@@ -1,6 +1,11 @@
 import 'package:clickncollect_app/services/authentification_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/all.dart';
+
+import '../models/customer.dart';
+import '../models/product.dart';
+import '../models/shop.dart';
 
 final firestoreProvider = Provider<FirestoreService>((ref) {
   return FirestoreService(
@@ -13,4 +18,89 @@ class FirestoreService {
   final AuthentificationService _auth;
 
   FirestoreService(this._auth);
+
+  CollectionReference getCollection(String collection) =>
+      _firestore.collection(collection);
+
+  // ============================================= Products handling =============================================
+  Future addProduct(Product product, Shop shop) async {
+    // Todo add product to a shop and add product to products
+  }
+
+  Future updateProduct(Product product, Shop shop) async {
+    // Todo
+  }
+
+  Future deleteProduct(Product product, Shop shop) async {
+    // Todo
+  }
+
+  Future getProductFromAShop(Product product, Shop shop) async {
+    // Todo
+  }
+
+  Future getProductsListFromAShop(Shop shop) async {
+    // Todo
+  }
+
+  Future getProductsListFromACustomer(Customer customer) async {
+    // Todo
+  }
+
+// ============================================= Shop handling =============================================
+  Future addShop(Shop shop) async {
+    // Todo
+  }
+
+  Future updateShopInfo(Shop shop) async {
+    // Todo
+  }
+
+  Future deleteShop(Shop shop) async {
+    // Todo
+  }
+
+  // Future getShopCustomers(Shop shop) async {
+  //   // Todo
+  // }
+
+// ============================================= Customer handling =============================================
+  Future<String> createCustomer({@required String email}) async {
+    String uid = _auth.currentUser.uid;
+    print('user id is $uid');
+    Map<String, dynamic> data = {'email': email};
+    try {
+      if (uid != null) {
+        await getCollection('customers').doc(uid).set(data).whenComplete(() {
+          print('user added to firestore');
+        });
+        return 'success';
+      } else {
+        return 'error';
+      }
+    } on FirebaseException catch (e) {
+      print(e.message);
+      return 'error';
+    }
+  }
+
+  Future addCustomerToAShop(Customer customer, Shop shop) async {
+    // Todo
+  }
+
+  Future updateCustomerInfo(Customer customer, Shop shop) async {
+    // Todo
+  }
+
+  Future deleteCustomer(Customer customer, Shop shop) async {
+    // Todo
+  }
+
+  Future getCustomersListFromAShop(Shop shop) async {
+    // Todo
+  }
+
+  Future getCustomerFromAShop(Customer customer, Shop shop) async {
+    // Todo
+  }
 }
