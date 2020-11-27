@@ -15,10 +15,10 @@ import '../ui/views/home/home_view.dart';
 import '../ui/views/startup/startup_view.dart';
 
 class Routes {
-  static const String startUpView = '/start-up-view';
+  static const String startUpView = '/';
   static const String homeView = '/home-view';
   static const String signInView = '/sign-in-view';
-  static const String signUpView = '/';
+  static const String signUpView = '/sign-up-view';
   static const all = <String>{
     startUpView,
     homeView,

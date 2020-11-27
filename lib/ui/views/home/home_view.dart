@@ -7,6 +7,7 @@ class HomeView extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     var model = watch(homeViewModelProvider);
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       body: model.getViewForIndex(model.currentIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: [

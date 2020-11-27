@@ -1,21 +1,14 @@
-import 'package:clickncollect_app/services/navigation_service.dart';
 import 'package:clickncollect_app/ui/views/customer/customer_profile/customer_profile_view.dart';
 import 'package:clickncollect_app/ui/views/shop/shops_list/shops_list_view.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/all.dart';
-import 'package:stacked_services/stacked_services.dart';
 
 final homeViewModelProvider = ChangeNotifierProvider<HomeViewModel>((ref) {
-  return HomeViewModel(
-    ref.read(navigationServiceProvider),
-  );
+  return HomeViewModel();
 });
 
 class HomeViewModel extends ChangeNotifier {
-  final NavigationService _navigationService;
-  HomeViewModel(this._navigationService);
-
   int _currentIndex = 0;
   get currentIndex => _currentIndex;
 

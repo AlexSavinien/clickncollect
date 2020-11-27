@@ -19,7 +19,7 @@ class FirestoreService {
 
   FirestoreService(this._auth);
 
-  CollectionReference getCollection(String collection) =>
+  CollectionReference getCollectionStream(String collection) =>
       _firestore.collection(collection);
 
   // ============================================= Products handling =============================================
@@ -68,10 +68,15 @@ class FirestoreService {
   Future<String> createCustomer({@required String email}) async {
     String uid = _auth.currentUser.uid;
     print('user id is $uid');
-    Map<String, dynamic> data = {'email': email};
+    Customer customer = Customer(
+      email: email,
+    );
     try {
       if (uid != null) {
-        await getCollection('customers').doc(uid).set(data).whenComplete(() {
+        await getCollection('customers')
+            .doc(uid)
+            .set(customer.toJson())
+            .whenComplete(() {
           print('user added to firestore');
         });
         return 'success';
@@ -84,11 +89,29 @@ class FirestoreService {
     }
   }
 
-  Future addCustomerToAShop(Customer customer, Shop shop) async {
-    // Todo
+  CollectionReference getCollection(String collection) =>
+      _firestore.collection(collection);
+
+  Stream getCurrentCustomer() {
+    String uid = _auth.currentUser.uid;
+    print('current customer id is : $uid');
+    Stream customerStream = getCollection('customers')
+        .where(FieldPath.documentId, isEqualTo: uid)
+        .snapshots(includeMetadataChanges: true);
+    return customerStream;
   }
 
-  Future updateCustomerInfo(Customer customer, Shop shop) async {
+  Future updateCurrentCustomerInfo(String dataField, dataValue) async {
+    var uid = _auth.currentUser.uid;
+    await getCollection('customers')
+        .doc(uid)
+        .update({dataField: dataValue})
+        .then((value) => print(
+            'User with id $uid has updated his $dataField with $dataValue'))
+        .catchError((error) => print("Failed to update user: $error"));
+  }
+
+  Future addCustomerToAShop(Customer customer, Shop shop) async {
     // Todo
   }
 

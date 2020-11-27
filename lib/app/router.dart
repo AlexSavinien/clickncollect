@@ -5,10 +5,10 @@ import 'package:clickncollect_app/ui/views/home/home_view.dart';
 import 'package:clickncollect_app/ui/views/startup/startup_view.dart';
 
 @MaterialAutoRouter(routes: <AutoRoute>[
-  MaterialRoute(page: StartUpView),
+  MaterialRoute(page: StartUpView, initial: true),
   MaterialRoute(page: HomeView),
   MaterialRoute(page: SignInView),
-  MaterialRoute(page: SignUpView, initial: true),
+  MaterialRoute(page: SignUpView),
   // MaterialRoute(page: SignInView),
   // MaterialRoute(page: SignInView),
   // MaterialRoute(page: SignInView),

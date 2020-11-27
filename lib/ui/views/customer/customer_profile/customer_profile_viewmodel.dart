@@ -1,22 +1,40 @@
 import 'package:clickncollect_app/app/router.gr.dart';
+import 'package:clickncollect_app/models/customer.dart';
 import 'package:clickncollect_app/services/authentification_service.dart';
+import 'package:clickncollect_app/services/firestore_service.dart';
 import 'package:clickncollect_app/services/navigation_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/all.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-final customerProfileProvider = ChangeNotifierProvider<CustomerProfile>((ref) {
-  return CustomerProfile(
+final customerProfileViewModelProvider =
+    ChangeNotifierProvider<CustomerProfileViewModel>((ref) {
+  return CustomerProfileViewModel(
     ref.read(authentificationServiceProvider),
     ref.read(navigationServiceProvider),
+    ref.read(firestoreProvider),
   );
 });
 
-class CustomerProfile extends ChangeNotifier {
+class CustomerProfileViewModel extends ChangeNotifier {
   final AuthentificationService _auth;
   final NavigationService _navigationService;
+  final FirestoreService _firestore;
 
-  CustomerProfile(this._auth, this._navigationService);
+  CustomerProfileViewModel(
+      this._auth, this._navigationService, this._firestore);
+
+  Stream getCurrentCustomerInfo() {
+    var uid = _auth.currentUser.uid;
+    Stream customerStream = _firestore.getCurrentCustomer();
+    return customerStream;
+  }
+
+  updateCurrentUserInfo({String dataField, dataValue}) {
+    _firestore.updateCurrentCustomerInfo(dataField, dataValue);
+    // notifyListeners();
+  }
 
   logOut() {
     _auth.signOut();

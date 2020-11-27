@@ -5,6 +5,9 @@ class Customer {
   String email;
   String phoneNumber;
 
+  Customer(
+      {this.uid, this.firstname, this.lastname, this.email, this.phoneNumber});
+
   Customer.fromJson(Map<String, dynamic> data)
       : uid = data['uid'],
         firstname = data['firstname'],
@@ -19,4 +22,14 @@ class Customer {
         'email': email,
         'phoneNumber': phoneNumber,
       };
+
+  String fullName() {
+    if (firstname == null || lastname == null) {
+      if (firstname == '' || lastname == '') {
+        return 'Éditez votre Profile';
+      }
+    } else {
+      return '$firstname $lastname';
+    }
+  }
 }
