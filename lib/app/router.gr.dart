@@ -12,17 +12,20 @@ import 'package:flutter/material.dart';
 import '../ui/views/authentification/signin/signin_view.dart';
 import '../ui/views/authentification/signup/signup_view.dart';
 import '../ui/views/home/home_view.dart';
+import '../ui/views/shop/add_shop/add_shop_view.dart';
 import '../ui/views/startup/startup_view.dart';
 
 class Routes {
   static const String startUpView = '/';
   static const String homeView = '/home-view';
   static const String signInView = '/sign-in-view';
+  static const String addShopView = '/add-shop-view';
   static const String signUpView = '/sign-up-view';
   static const all = <String>{
     startUpView,
     homeView,
     signInView,
+    addShopView,
     signUpView,
   };
 }
@@ -34,6 +37,7 @@ class Router extends RouterBase {
     RouteDef(Routes.startUpView, page: StartUpView),
     RouteDef(Routes.homeView, page: HomeView),
     RouteDef(Routes.signInView, page: SignInView),
+    RouteDef(Routes.addShopView, page: AddShopView),
     RouteDef(Routes.signUpView, page: SignUpView),
   ];
   @override
@@ -54,6 +58,12 @@ class Router extends RouterBase {
     SignInView: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => SignInView(),
+        settings: data,
+      );
+    },
+    AddShopView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => AddShopView(),
         settings: data,
       );
     },

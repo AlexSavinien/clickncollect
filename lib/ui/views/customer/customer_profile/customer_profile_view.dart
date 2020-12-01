@@ -78,12 +78,12 @@ class CustomerProfileView extends ConsumerWidget {
                     ],
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                   Text('Commandes passées'),
                   Container(
                     constraints: BoxConstraints(
-                      maxHeight: 200,
+                      maxHeight: 180,
                     ),
                     child: ListView(
                       controller: listViewController,
@@ -123,11 +123,27 @@ class CustomerProfileView extends ConsumerWidget {
                       ],
                     ),
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Voulez-vous ajouter votre boutique ?'),
+                      ElevatedButton(
+                        onPressed: () async {
+                          print('button pressed');
+                          model.navigateToAddShop();
+                        },
+                        child: Text('Ajouter'),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             );
           }
-          return CircularProgressIndicator();
+          return Center(child: CircularProgressIndicator());
         },
       ),
     );

@@ -1,6 +1,4 @@
 import 'package:clickncollect_app/ui/views/customer/customer_profile/customer_profile_viewmodel.dart';
-import 'package:clickncollect_app/ui/widgets/info_tile/info_tile_model.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/all.dart';
 

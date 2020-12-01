@@ -24,12 +24,11 @@ class Customer {
       };
 
   String fullName() {
-    if (firstname == null || lastname == null) {
-      if (firstname == '' || lastname == '') {
-        return 'Éditez votre Profile';
+    if (firstname != null && lastname != null) {
+      if (firstname != '' && lastname != '') {
+        return '$firstname $lastname';
       }
-    } else {
-      return '$firstname $lastname';
     }
+    return 'Éditez votre Profile';
   }
 }

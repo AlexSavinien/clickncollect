@@ -52,6 +52,7 @@ class SignUpViewModel extends ChangeNotifier {
       print('isBusy ? $isBusy.');
       return 'error';
     }
+    return 'waiting';
   }
 
   // ======================== Navigation ========================
