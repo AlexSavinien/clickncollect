@@ -1,0 +1,1 @@
+enum InfoTileModels { shop, customer }

@@ -7,6 +7,7 @@ class AddShopView extends StatelessWidget {
   final emailController = TextEditingController();
   final adressController = TextEditingController();
   final phoneController = TextEditingController();
+  final nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +33,12 @@ class AddShopView extends StatelessWidget {
               ),
               SizedBox(height: 20),
               TextField(
+                controller: nameController,
+                decoration: kTextFieldInputDecoration.copyWith(
+                    hintText: 'Nom de la boutique'),
+              ),
+              SizedBox(height: 20),
+              TextField(
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: kTextFieldInputDecoration.copyWith(
@@ -40,33 +47,12 @@ class AddShopView extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              TextField(
-                controller: adressController,
-                decoration: kTextFieldInputDecoration.copyWith(
-                    hintText: 'Adresse de la boutique'),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              TextField(
-                controller: phoneController,
-                decoration: kTextFieldInputDecoration.copyWith(
-                    hintText: 'Téléphone de la boutique'),
-              ),
-              SizedBox(
-                height: 20,
-              ),
               ElevatedButton(
                 onPressed: () async {
                   print('button pressed');
-                  // var res = await model.signUp(
-                  //   email: emailController.text,
-                  //   password: passwordController.text,
-                  // );
-                  // print(res);
-                  // if (res == 'success') {
-                  //   model.navigateToHome();
-                  // }
+                  model.createShop(
+                      email: emailController.text, name: nameController.text);
+                  model.navigateToShopProfile();
                 },
                 child: Text('S\'inscrire'),
               ),

@@ -23,6 +23,7 @@ class AuthentificationService {
 
   Future<String> signOut() async {
     await _auth.signOut();
+    print('User have signed out');
     return 'success';
   }
 

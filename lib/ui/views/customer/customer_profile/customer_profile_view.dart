@@ -1,3 +1,4 @@
+import 'package:clickncollect_app/app/enums/info_tile_model_enum.dart';
 import 'package:clickncollect_app/models/customer.dart';
 import 'package:clickncollect_app/ui/views/customer/customer_profile/customer_profile_viewmodel.dart';
 import 'package:clickncollect_app/ui/widgets/info_tile/info_tile.dart';
@@ -59,21 +60,25 @@ class CustomerProfileView extends ConsumerWidget {
                         currentInfo: customer.firstname,
                         currentInfoPlaceholder: 'Prénom',
                         firestoreField: 'firstname',
+                        infoTileModel: InfoTileModels.customer,
                       ),
                       InfoTile(
                         currentInfo: customer.lastname,
                         currentInfoPlaceholder: 'Nom',
                         firestoreField: 'lastname',
+                        infoTileModel: InfoTileModels.customer,
                       ),
                       InfoTile(
                         currentInfo: customer.phoneNumber,
                         currentInfoPlaceholder: 'Téléphone',
                         firestoreField: 'phoneNumber',
+                        infoTileModel: InfoTileModels.customer,
                       ),
                       InfoTile(
                         currentInfo: customer.email,
                         currentInfoPlaceholder: 'E-mail',
                         firestoreField: 'email',
+                        infoTileModel: InfoTileModels.customer,
                       ),
                     ],
                   ),
