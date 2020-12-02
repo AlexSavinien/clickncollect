@@ -24,11 +24,11 @@ class CustomerProfileViewModel extends ChangeNotifier {
       this._auth, this._navigationService, this._firestore);
 
   Stream getCurrentCustomerInfo() {
-    Stream customerStream = _firestore.getCurrentCustomer();
+    Stream customerStream = _firestore.watchCurrentCustomer();
     return customerStream;
   }
 
-  updateCurrentUserInfo({String dataField, dataValue}) {
+  updateInfo({String dataField, dataValue}) {
     _firestore.updateCurrentCustomerInfo(dataField, dataValue);
     // notifyListeners();
   }

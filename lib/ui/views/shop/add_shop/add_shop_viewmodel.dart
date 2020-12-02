@@ -1,3 +1,5 @@
+import 'package:clickncollect_app/app/router.gr.dart';
+import 'package:clickncollect_app/models/shop.dart';
 import 'package:clickncollect_app/services/authentification_service.dart';
 import 'package:clickncollect_app/services/firestore_service.dart';
 import 'package:clickncollect_app/services/navigation_service.dart';
@@ -26,5 +28,15 @@ class AddShopViewModel extends ChangeNotifier {
   updateBusy() {
     isBusy = !isBusy;
     notifyListeners();
+  }
+
+  Future createShop({@required String email, @required String name}) async {
+    Shop newShop =
+        Shop(email: email, name: name, ownerId: _auth.currentUser.uid);
+    await _firestoreService.addShop(newShop);
+  }
+
+  navigateToShopProfile() {
+    _navigationService.navigateTo(Routes.shopProfileView);
   }
 }
